@@ -17,12 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Import environment variables
-        env:
-          DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
-        run: |
-          exec .github/scripts/import-deploy-env.sh
-
       - name: Bun Setup
         uses: oven-sh/setup-bun@v1
 
