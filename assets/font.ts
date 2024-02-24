@@ -4,5 +4,6 @@ export const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   adjustFontFallback: true,
   subsets: ['latin'],
+  variable: '--font-poppins',
   style: ['italic', 'normal'],
 })

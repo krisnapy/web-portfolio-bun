@@ -25,7 +25,7 @@ export const ProgressiveImage = (props: ProgressiveImageProps) => {
       sizes='(max-width: 768px) 100vw'
       blurDataURL={image}
       placeholder='blur'
-      onLoadingComplete={() => setIsLoading(false)}
+      onLoad={() => setIsLoading(false)}
       {...otherProps}
     />
   )

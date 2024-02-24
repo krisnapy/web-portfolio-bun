@@ -1,4 +1,4 @@
-import { camelCase } from '@/utils/string'
+import { camelCase, trimSlash } from '@/utils/string'
 
 export type CamelizeArray = Record<string, any> | Array<Record<string, any>>
 export type KeyValuePairs = Record<string, any>
@@ -36,13 +36,15 @@ export function camelize(data: CamelizeArray): CamelizeArray {
 }
 
 export async function getData(path: string): Promise<KeyValuePairs> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${path}?populate=*`)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch API!')
-  }
+  const response = await fetch(
+    trimSlash(`${process.env.NEXT_PUBLIC_API_BASE_URL}/${path}?populate=*`)
+  )
 
   const data = await response.json()
+
+  if (!response.ok) {
+    throw new Error(JSON.stringify(data.error.message))
+  }
 
   return camelize(data)
 }

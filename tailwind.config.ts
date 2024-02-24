@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-poppins)'],
+      },
       keyframes: {
         grow: {
           '0%': { transform: 'scale(1)' },

@@ -11,8 +11,8 @@ type BannerProps = {
   image: Record<string, any>
 }
 
-export default function Banner({ label = [], description = '', image }: BannerProps) {
-  const typingWritter = ({ typeString }: TypewriterClass) => {
+export const Banner = ({ label = [], description = '', image }: BannerProps) => {
+  const typingWriter = ({ typeString }: TypewriterClass) => {
     label.map((item) => typeString(item.label).start().pauseFor(5000).deleteAll(200).pauseFor(1000))
   }
 
@@ -39,10 +39,11 @@ export default function Banner({ label = [], description = '', image }: BannerPr
                     Hello, I am Krisna
                     <br />
                     <b className='text-primary'>
-                      <TypewriterComponent onInit={typingWritter} options={{ loop: true }} />
+                      <TypewriterComponent onInit={typingWriter} options={{ loop: true }} />
                     </b>
                   </Balancer>
                 </h1>
+
                 <p className='text-white leading-relaxed font-light text-xl mx-auto pb-2'>
                   {description}
                 </p>

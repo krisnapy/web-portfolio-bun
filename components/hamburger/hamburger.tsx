@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { type Dispatch, type SetStateAction } from 'react'
+
 import { cn } from '@/utils/classnames'
 
 type HamburgerProps = {
@@ -12,7 +13,7 @@ const activeHamburgerLine =
 
 export const Hamburger = ({ isToggle, setIsToggle }: HamburgerProps) => (
   <div
-    className='relative group md:hidden z-40'
+    className='relative group sm:hidden z-40'
     onClick={() => setIsToggle((prev) => !prev)}
     role='button'
     aria-label='Hamburger'

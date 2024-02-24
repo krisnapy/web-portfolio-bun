@@ -1,4 +1,4 @@
-export { default as Banner } from './banner/banner'
+export * from './banner/banner'
 export * from './button/button'
 export * from './card/card'
 export * from './list-skill/list-skill'

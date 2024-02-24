@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { type Dispatch, type SetStateAction, useEffect } from 'react'
 import Link from 'next/link'
 
 import { Hamburger } from '@/components'
@@ -8,9 +8,12 @@ import { cn } from '@/utils/classnames'
 
 import NavbarMenu from './navbar-menu'
 
-export const Navbar = () => {
-  const [isToggle, setIsToggle] = useState<boolean>(false)
+type NavbarProps = {
+  isMobileMenuVisible: boolean
+  setIsMobileMenuVisible: Dispatch<SetStateAction<boolean>>
+}
 
+export const Navbar = ({ isMobileMenuVisible, setIsMobileMenuVisible }: NavbarProps) => {
   useEffect(() => {
     const onScrollHandler = () => {
       const navbar = document.getElementById('navbar')
@@ -37,19 +40,19 @@ export const Navbar = () => {
 
           <div
             className={cn(
-              'md:opacity-100 absolute top-0 right-0 md:relative md:p-0 md:w-auto md:flex-row flex-col w-full md:gap-3 gap-10 font-general-medium flex h-screen md:h-auto transition-all',
+              'sm:opacity-100 absolute top-0 right-0 sm:relative sm:p-0 sm:w-auto sm:flex-row flex-col w-full sm:gap-3 gap-10 font-general-medium flex h-screen sm:h-auto sm:transition-opacity transition-all sm:translate-y-0',
               {
-                'z-40 opacity-1 bg-dark md:bg-transparent overflow-hidden items-center justify-center':
-                  isToggle,
-                'opacity-0 pointer-events-none md:pointer-events-auto [&>a]:md:flex [&>a]:hidden':
-                  !isToggle,
+                'z-40 opacity-1 bg-dark sm:bg-transparent overflow-hidden items-center justify-center translate-y-0 duration-500 sm:duration-150':
+                  isMobileMenuVisible,
+                'opacity-0 pointer-events-none sm:pointer-events-auto [&>a]:sm:flex [&>a]:hidden -translate-y-[90vh] duration-500 sm:duration-150':
+                  !isMobileMenuVisible,
               }
             )}
           >
-            <NavbarMenu />
+            <NavbarMenu isToggle={isMobileMenuVisible} setIsToggle={setIsMobileMenuVisible} />
           </div>
 
-          <Hamburger isToggle={isToggle} setIsToggle={setIsToggle} />
+          <Hamburger isToggle={isMobileMenuVisible} setIsToggle={setIsMobileMenuVisible} />
         </div>
       </div>
     </nav>

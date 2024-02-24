@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ListSkill } from '@/components'
-import Banner from '@/components/banner/banner'
+import { ListSkill, Banner } from '@/components'
 import { getData } from '@/services/api-core'
 
 export const fetchHomeApi = async () => {
